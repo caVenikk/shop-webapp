@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.products-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 200px 200px;
+}
+
+.product {
+  text-align: center;
+  max-height: max-content;
+}
+.product .img {
+  width: 40%;
+}
+.product .caption {
+  padding: 0;
+  margin: 0;
+  -webkit-line-clamp: 2;
+}
+.product .caption li {
+  margin: 10px 0;
+  font-size: 12px;
+  display: inline-block;
+}
+.product .caption li:after {
+  content: "·";
+  margin: 0 0.25em 0 0.25em;
+  font-weight: bold;
+}
+.product .caption li:last-child {
+  font-weight: 600;
+}
+.product .caption li:last-child:after {
+  content: "₽";
+  font-weight: 600;
+}
+.product .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  background: rgb(248, 168, 24);
+  border-radius: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: background 0.2s linear;
+}
+.product .btn:hover {
+  cursor: pointer;
+  background: lightgreen;
+}
+
+/*# sourceMappingURL=products.css.map */
