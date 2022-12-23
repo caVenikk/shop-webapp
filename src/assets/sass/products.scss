@@ -1,7 +1,7 @@
 .products-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 200px 200px 200px;
+    grid-auto-rows: 200px;
 }
 
 .product {
@@ -51,9 +51,18 @@
 
         transition: background .2s linear;
 
-        &:hover {
-            cursor: pointer;
-            background: lightgreen;
+        @media (hover: hover) {
+            &:hover {
+                cursor: pointer;
+                background: lightgreen;
+            }
+        }
+
+        @media (hover: none) {
+            &:active {
+                cursor: pointer;
+                background: lightgreen;
+            }
         }
     }
 }
