@@ -22,6 +22,9 @@ export default {
                 this.$tg.MainButton.hide();
             } else {
                 this.$tg.MainButton.setText(`Вы выбрали "${this.product_name}"`)
+                Telegram.WebApp.onEvent("mainButtonClicked", function() {
+                    this.$tg.sendData(this.id_num);
+                })
                 console.log(this.product_name)
             }
         }
