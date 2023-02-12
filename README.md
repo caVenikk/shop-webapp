@@ -2,12 +2,10 @@
 
 ## Table of contents
 
-- [Shop web app](#shop-web-app)
-  - [Table of contents](#table-of-contents)
-  - [General info](#general-info)
-  - [Technologies](#technologies)
-  - [Setup](#setup)
-  - [Implementation example](#implementation-example)
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Implementation example](#implementation-example)
 
 ## General info
 
