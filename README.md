@@ -1,7 +1,47 @@
-# Vue 3 + Vite
+# Shop web app
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Table of contents
 
-## Recommended IDE Setup
+- [Shop web app](#shop-web-app)
+  - [Table of contents](#table-of-contents)
+  - [General info](#general-info)
+  - [Technologies](#technologies)
+  - [Setup](#setup)
+  - [Implementation example](#implementation-example)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## General info
+
+This project is submodule for another project, which is an online food store.
+This submodule is a web application with products grid, which will be integrated in Telegram bot for food ordering.
+
+## Technologies
+
+Project is created with:
+
+- Vue.js
+- Javascript
+- SASS
+
+## Setup
+
+Firstly, install all dependencies locally using npm:
+
+```
+$ cd ../shop-webapp
+$ npm install
+```
+
+If you want to run dev server, use this command:
+
+```
+$ npm run dev
+```
+
+If you want to build static, use this command:
+```
+$ npx vite build
+```
+
+## Implementation example
+
+[Shop webapp](https://shop.lilnikky.ru)
