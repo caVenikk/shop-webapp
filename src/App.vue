@@ -1,5 +1,6 @@
 <script>
 import UProductsGrid from './components/UProductsGrid.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -39,17 +40,27 @@ export default {
                 .then((response) => {
                     this.products = response.data;
                 })
-        }
+        },
+        onSendData() {
+            const product_id = this.$store.getters['product/getSelected'].toString();
+            this.$tg.sendData(product_id);
+        },
     },
+    computed: {
+        ...mapGetters('product', ['getSelected']),
+    },
+    mounted() {
+        this.$tg.onEvent("mainButtonClicked", this.onSendData);
+        return () => {
+            this.$tg.offEvent("mainButtonClicked", this.onSendData);
+        }
+    }
 }
 </script>
 
 <template>
     <div class="main">
-        <UProductsGrid
-            v-if="!loading"
-            :products="products"
-        />
+        <UProductsGrid v-if="!loading" :products="products" />
         <span v-else>Сервис временно недоступен.<br>Приносим извинения за предоставленные неудобства</span>
     </div>
 </template>

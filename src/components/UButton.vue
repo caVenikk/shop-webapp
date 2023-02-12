@@ -1,5 +1,6 @@
 <script>
 import '@/assets/stylesheets/products.css'
+import { mapActions } from 'vuex'
 
 export default {
     props: {
@@ -17,19 +18,18 @@ export default {
         }
     },
     methods: {
+        ...mapActions('product', ['setSelected']),
         chooseProduct() {
             if (this.$tg.MainButton.isVisible) {
+                this.$store.commit('product/setSelected', -1);
                 this.$tg.MainButton.hide();
             } else {
+                this.$store.commit('product/setSelected', this.id_num);
                 this.$tg.MainButton.setText(`Вы выбрали "${this.product_name}"`)
                 this.$tg.MainButton.show();
-                Telegram.WebApp.onEvent("mainButtonClicked", function() {
-                    this.$tg.sendData(this.id_num);
-                })
-                console.log(this.product_name)
             }
         }
-    },
+    }
 }
 </script>
 
