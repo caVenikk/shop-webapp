@@ -49,8 +49,10 @@ export default {
         },
         async createInvoiceLink(product) {
             await this.$axios.post(
-                'create_invoice_link/',
-                product
+                'create_invoice_link/', {
+                product: product,
+                user_id: this.$tg.initDataUnsafe.user.id
+            }
             )
                 .then((response) => {
                     this.invoiceLink = response.data.invoice_link;
