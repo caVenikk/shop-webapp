@@ -1,10 +1,12 @@
 <script>
 import UProductsGrid from './components/UProductsGrid.vue';
+import ULoader from './components/ULoader.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
     components: {
         UProductsGrid,
+        ULoader,
     },
     data() {
         return {
@@ -13,6 +15,7 @@ export default {
                 required: true,
             },
             loading: false,
+            cant_load: false,
             invoiceLink: {
                 type: String,
             }
@@ -29,6 +32,10 @@ export default {
             } catch (err) {
                 if (this.$retryOperation.retry(err)) {
                     return;
+                }
+            } finally {
+                if (currentAttempt == this.$retryOperation._originalTimeouts.length) {
+                    this.cant_load = true;
                 }
             }
         });
@@ -85,7 +92,8 @@ export default {
 
 <template>
     <div class="main">
-        <UProductsGrid v-if="!loading" :products="products" />
-        <span v-else>Сервис временно недоступен.<br>Приносим извинения за предоставленные неудобства</span>
+        <UProductsGrid v-if="!loading && !cant_load" :products="products" />
+        <ULoader v-else-if="loading && !cant_load" />
+        <span v-else>Сервис временно недоступен.<br>Приносим извинения за предоставленные неудобства.</span>
     </div>
 </template>
