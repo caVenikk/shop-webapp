@@ -44,9 +44,8 @@ export default {
             :price="this.sliced_price"
         />
         <UButton
-            :id_num="this.product.id"
+            :product="this.product"
             :text="'Выбрать'"
-            :product_name="this.product.title"
         />
     </div>
 </template>
