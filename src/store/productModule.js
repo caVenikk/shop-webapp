@@ -1,6 +1,6 @@
 export const productModule = {
     state: () => ({
-        selected: -1
+        selected: null
     }),
     getters: {
         getSelected(state) {

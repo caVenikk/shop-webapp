@@ -4,28 +4,26 @@ import { mapActions } from 'vuex'
 
 export default {
     props: {
-        id_num: {
-            type: Number,
+        product: {
+            type: Object,
             required: true,
         },
         text: {
             type: String,
             required: true,
         },
-        product_name: {
-            type: String,
-            required: true,
-        }
+    },
+    computed: {
+        ...mapActions('product', ['setSelected']),
     },
     methods: {
-        ...mapActions('product', ['setSelected']),
         chooseProduct() {
             if (this.$tg.MainButton.isVisible) {
-                this.$store.commit('product/setSelected', -1);
+                this.$store.commit('product/setSelected', null);
                 this.$tg.MainButton.hide();
             } else {
-                this.$store.commit('product/setSelected', this.id_num);
-                this.$tg.MainButton.setText(`Вы выбрали "${this.product_name}"`)
+                this.$store.commit('product/setSelected', this.product);
+                this.$tg.MainButton.setText(`Вы выбрали "${this.product.title}"`)
                 this.$tg.MainButton.show();
             }
         }
@@ -34,11 +32,7 @@ export default {
 </script>
 
 <template>
-    <button
-        @click="chooseProduct"
-        class="btn"
-        :id="'btn'+id_num"
-    >
+    <button @click="chooseProduct" class="btn" :id="'btn' + product.id">
         {{ text }}
     </button>
 </template>

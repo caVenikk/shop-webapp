@@ -1,6 +1,6 @@
 <script>
 import UProductsGrid from './components/UProductsGrid.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     components: {
@@ -13,6 +13,9 @@ export default {
                 required: true,
             },
             loading: false,
+            invoiceLink: {
+                type: String,
+            }
         }
     },
     async created() {
@@ -31,6 +34,9 @@ export default {
         });
     },
     methods: {
+        sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        },
         async fetchProducts() {
             this.products = null;
             this.loading = true;
@@ -41,18 +47,35 @@ export default {
                     this.products = response.data;
                 })
         },
-        onSendData() {
-            const product_id = this.$store.getters['product/getSelected'].toString();
-            this.$tg.sendData(product_id);
+        async createInvoiceLink(product) {
+            await this.$axios.post(
+                'create_invoice_link/',
+                product
+            )
+                .then((response) => {
+                    this.invoiceLink = response.data.invoice_link;
+                })
+        },
+        async onSendData() {
+            await this.createInvoiceLink(this.$store.getters['product/getSelected']);
+            this.$tg.openInvoice(this.invoiceLink);
+        },
+        async onInvoiceClosed(eventData) {
+            if (eventData.status == "cancelled") {
+                this.$tg.MainButton.show();
+            }
         },
     },
     computed: {
         ...mapGetters('product', ['getSelected']),
+        ...mapActions('product', ['setSelected']),
     },
     mounted() {
         this.$tg.onEvent("mainButtonClicked", this.onSendData);
+        this.$tg.onEvent("invoiceClosed", this.onInvoiceClosed);
         return () => {
             this.$tg.offEvent("mainButtonClicked", this.onSendData);
+            this.$tg.offEvent("invoiceClosed", this.onInvoiceClosed);
         }
     }
 }
