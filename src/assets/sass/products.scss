@@ -43,7 +43,7 @@
         display: inline-block;
         padding: 10px 20px;
         border: none;
-        background: rgb(248, 168, 24);
+        background: #f8a818;
         border-radius: 10px;
         color: var(--tg-theme-button-text-color);
         text-transform: uppercase;
@@ -61,7 +61,7 @@
         @media (hover: none) {
             &:active {
                 cursor: pointer;
-                background: lightgreen;
+                background: #90ee90;
             }
         }
     }

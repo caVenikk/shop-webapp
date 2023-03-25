@@ -80,6 +80,16 @@ export default {
         ...mapActions('product', ['setSelected']),
     },
     mounted() {
+        if (this.$tg.platform == "unknown") {
+            this.$tg.MainButton.textColor = "#fff";
+            this.$tg.MainButton.color = "#1eb504";
+        } else {
+            const body = document.querySelector('body');
+            const buttonColor = getComputedStyle(body).getPropertyValue('--tg-theme-button-color');
+            const buttonTextColor = getComputedStyle(body).getPropertyValue('--tg-theme-button-text-color');
+            this.$tg.MainButton.textColor = buttonTextColor;
+            this.$tg.MainButton.color = buttonColor;
+        }
         this.$tg.onEvent("mainButtonClicked", this.onSendData);
         this.$tg.onEvent("invoiceClosed", this.onInvoiceClosed);
         return () => {
