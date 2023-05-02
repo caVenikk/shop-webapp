@@ -1,27 +1,24 @@
 <script>
-import UProduct from './UProduct.vue';
+import UProductCard from './UProductCard.vue';
 import '@/assets/stylesheets/products.css'
 
 export default {
     name: 'UProductsGrid',
-    props: {
+    computed: {
         products: {
-            type: Array,
-            required: true,
-        }
+            get() {
+                return this.$store.getters['products/getSelected'];
+            },
+        },
     },
     components: {
-        UProduct
+        UProductCard
     },
 }
 </script>
 
 <template>
     <div class="products-container">
-        <UProduct
-            v-for="product in products"
-            :key="product.id"
-            :product="product"
-        />        
+        <UProductCard v-for="product in products" :key="product.id" :product="product" />
     </div>
 </template>

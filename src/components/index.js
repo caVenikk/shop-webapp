@@ -1,4 +1,4 @@
-import UProduct from './UProduct.vue'
+import UProduct from './UProductCard.vue'
 
 const components = [
     {name: 'UProduct', component: UProduct}

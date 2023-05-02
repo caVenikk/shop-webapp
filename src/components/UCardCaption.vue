@@ -1,5 +1,6 @@
 <script>
 export default {
+    name: 'UCardCaption',
     props: {
         title: {
             type: String,
@@ -14,9 +15,10 @@ export default {
 </script>
 
 <template>
-    <ul class="caption">
+    <ul class="card-caption">
         <li>
-        {{ title }}</li><li>
-        {{ price }}</li>
+            {{ title }}</li>
+        <li>
+            {{ price }}</li>
     </ul>
 </template>
