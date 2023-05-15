@@ -34,10 +34,7 @@
   opacity: 1;
 }
 .product-card .increasing {
-  animation: increasing 0.2s;
-}
-.product-card .decreasing {
-  animation: decreasing 0.2s;
+  animation: increasing 0.15s;
 }
 @keyframes increasing {
   0% {
@@ -52,6 +49,9 @@
     width: 25px;
     height: 25px;
   }
+}
+.product-card .decreasing {
+  animation: decreasing 0.15s;
 }
 @keyframes decreasing {
   0% {
@@ -209,6 +209,7 @@
   font-size: 15px;
   line-height: 18px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .products-list {

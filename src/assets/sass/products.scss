@@ -35,44 +35,44 @@
     }
 
     .increasing {
-        animation: increasing .2s;
+        animation: increasing .15s;
+
+        @keyframes increasing {
+            0% {
+                width: 25px;
+                height: 25px;
+            }
+
+            50% {
+                width: 27.5px;
+                height: 27.5px;
+            }
+
+            100% {
+                width: 25px;
+                height: 25px;
+            }
+        }
     }
 
     .decreasing {
-        animation: decreasing .2s;
-    }
+        animation: decreasing .15s;
 
-    @keyframes increasing {
-        0% {
-            width: 25px;
-            height: 25px;
-        }
+        @keyframes decreasing {
+            0% {
+                width: 25px;
+                height: 25px;
+            }
 
-        50% {
-            width: 27.5px;
-            height: 27.5px;
-        }
+            50% {
+                width: 22.5px;
+                height: 22.5px;
+            }
 
-        100% {
-            width: 25px;
-            height: 25px;
-        }
-    }
-
-    @keyframes decreasing {
-        0% {
-            width: 25px;
-            height: 25px;
-        }
-
-        50% {
-            width: 22.5px;
-            height: 22.5px;
-        }
-
-        100% {
-            width: 25px;
-            height: 25px;
+            100% {
+                width: 25px;
+                height: 25px;
+            }
         }
     }
 
@@ -245,6 +245,7 @@
         font-size: 15px;
         line-height: 18px;
         text-decoration: none;
+        cursor: pointer;
     }
 }
 
