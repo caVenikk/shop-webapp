@@ -1,5 +1,6 @@
 <script>
 import UProductList from '../components/UProductList.vue';
+
 export default {
     name: 'OrderData',
     data() {
@@ -16,10 +17,9 @@ export default {
             }
         },
         totalPrice() {
-            const totalPrice = this.products.reduce((acc, product) => {
+            return this.products.reduce((acc, product) => {
                 return acc + (product.counter > 0 ? product.price : 0) * product.counter
             }, 0)
-            return totalPrice
         }
     },
     components: {
@@ -38,19 +38,28 @@ export default {
     },
     methods: {
         async onBackButtonClicked() {
+            this.$tg.offEvent("mainButtonClicked", this.onSendData);
             this.$router.back();
         },
         async createInvoiceLink() {
             const filteredProducts = this.products.filter(product => product.counter !== 0);
-            const productsWithoutCounters = filteredProducts.map(({ counter, ...rest }) => rest);
+            const productsWithoutCounters = filteredProducts.map(({ counter, ...rest }) => {
+                return {
+                    ...rest,
+                    counter
+                };
+            });
+            const counters = filteredProducts.map(({ counter }) => counter);
             delete productsWithoutCounters.counter;
             console.log({
                 products: productsWithoutCounters,
+                counters: counters,
                 user_id: this.$tg.initDataUnsafe.user.id
             });
             await this.$axios.post(
                 'create_invoice_link/', {
                 products: productsWithoutCounters,
+                counters: counters,
                 user_id: this.$tg.initDataUnsafe.user.id
             })
                 .then((response) => {
@@ -62,9 +71,9 @@ export default {
             this.$tg.openInvoice(this.invoiceLink);
         },
         async onInvoiceClosed(eventData) {
-            if (eventData.status == "cancelled") {
+            if (eventData.status === "cancelled") {
                 this.$tg.MainButton.show();
-            } else if (eventData.status == "paid") {
+            } else if (eventData.status === "paid") {
                 this.$tg.close();
             }
         },
@@ -77,7 +86,7 @@ export default {
         <div class="wrapper">
             <div class="order-data">
                 <span class="data-caption">ВАШ ЗАКАЗ</span>
-                <router-link :to="{ name: 'Home' }" class="link">Редактировать</router-link>
+                <span @click="onBackButtonClicked" class="link">Редактировать</span>
             </div>
             <UProductList />
         </div>
