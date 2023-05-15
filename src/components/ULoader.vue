@@ -1,5 +1,6 @@
 <script>
 import '@/assets/stylesheets/loader.css'
+
 export default {
     name: 'ULoader',
     methods: {
@@ -14,7 +15,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$tg.platform == "unknown") {
+        if (this.$tg.platform === "unknown") {
             this.setDotsColor("#f8a818")
         } else {
             const body = document.querySelector('body');

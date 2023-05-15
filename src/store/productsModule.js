@@ -1,6 +1,6 @@
 export const productsModule = {
     state: () => ({
-        products: new Array()
+        products: []
     }),
     getters: {
         getSelected(state) {

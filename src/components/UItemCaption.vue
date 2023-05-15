@@ -9,7 +9,7 @@ export default {
     },
     computed: {
         sliced_title() {
-            const sliced_title = this.product.title.slice(0, 15);
+            let sliced_title = this.product.title.slice(0, 15);
             if (sliced_title.length < this.product.title.length) {
                 sliced_title += '...';
             }
@@ -19,7 +19,7 @@ export default {
             if (!this.product.description) {
                 return this.product.description;
             }
-            const sliced_description = this.product.description.slice(0, 50);
+            let sliced_description = this.product.description.slice(0, 50);
             if (sliced_description.length < this.product.description.length) {
                 sliced_description += '...';
             }

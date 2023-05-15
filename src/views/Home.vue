@@ -28,7 +28,7 @@ export default {
         },
     },
     async created() {
-        if (this.products.length != 0) {
+        if (this.products.length !== 0) {
             return;
         }
         this.$retryOperation.attempt(async (currentAttempt) => {
@@ -43,7 +43,7 @@ export default {
                     return;
                 }
             } finally {
-                if (currentAttempt == this.$retryOperation._originalTimeouts.length) {
+                if (currentAttempt === this.$retryOperation._originalTimeouts.length) {
                     this.cant_load = true;
                 }
             }
@@ -71,13 +71,13 @@ export default {
                 })
         },
         async onSendData() {
+            this.$tg.MainButton.offClick(this.onSendData);
             this.$router.push({ path: 'order_data/:selected_products', name: "OrderData" });
-            this.$tg.offEvent("mainButtonClicked", this.onSendData);
         },
         async onInvoiceClosed(eventData) {
-            if (eventData.status == "cancelled") {
+            if (eventData.status === "cancelled") {
                 this.$tg.MainButton.show();
-            } else if (eventData.status == "paid") {
+            } else if (eventData.status === "paid") {
                 this.$tg.close();
             }
         },
@@ -89,15 +89,13 @@ export default {
         if (this.$tg.MainButton.isVisible) {
             this.$tg.MainButton.setText('Просмотреть заказ');
         }
-        if (this.$tg.platform == "unknown") {
+        if (this.$tg.platform === "unknown") {
             this.$tg.MainButton.textColor = "#fff";
             this.$tg.MainButton.color = "#1eb504";
         } else {
             const body = document.querySelector('body');
-            const buttonColor = getComputedStyle(body).getPropertyValue('--tg-theme-button-color');
-            const buttonTextColor = getComputedStyle(body).getPropertyValue('--tg-theme-button-text-color');
-            this.$tg.MainButton.textColor = buttonTextColor;
-            this.$tg.MainButton.color = buttonColor;
+            this.$tg.MainButton.textColor = getComputedStyle(body).getPropertyValue('--tg-theme-button-text-color');
+            this.$tg.MainButton.color = getComputedStyle(body).getPropertyValue('--tg-theme-button-color');
         }
         this.$tg.onEvent("mainButtonClicked", this.onSendData);
         this.$tg.onEvent("invoiceClosed", this.onInvoiceClosed);
