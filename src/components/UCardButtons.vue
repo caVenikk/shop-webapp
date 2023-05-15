@@ -22,7 +22,7 @@ export default {
         },
     },
     mounted() {
-        this.changing_add = this.product.counter == 0 ? false : true;
+        this.changing_add = this.product.counter !== 0;
     },
     methods: {
         addProduct(product) {
@@ -40,15 +40,17 @@ export default {
         },
         onAddClick() {
             this.addProduct(this.product);
+            this.$emit('added');
             this.back = false;
             this.changing_add = true;
         },
         onRemoveClick() {
-            if (this.product.counter == 0) {
+            if (this.product.counter === 0) {
                 return;
             }
             this.removeProduct(this.product);
-            if (this.product.counter == 0) {
+            this.$emit('removed');
+            if (this.product.counter === 0) {
                 this.back = true;
                 this.changing_add = false;
             }
@@ -61,7 +63,7 @@ export default {
     <div class="btn-wrapper">
         <button @click="onRemoveClick" class="btn-delete"><i class="fa-solid fa-minus"></i></button>
         <button @click="onAddClick" class="btn-add" :class="{ back: this.back, changing_add: this.changing_add }">
-            <span v-if="this.product.counter == 0">Добавить</span>
+            <span v-if="this.product.counter === 0">Добавить</span>
             <i v-else class="fa-solid fa-plus"></i>
         </button>
     </div>

@@ -24,20 +24,30 @@ export default {
     },
     computed: {
         sliced_title() {
-            const sliced_title = this.product.title.slice(0, 15);
+            let sliced_title = this.product.title.slice(0, 15);
             if (sliced_title.length < this.product.title.length) {
                 sliced_title += '...';
             }
             return sliced_title
         },
         sliced_price() {
-            const sliced_price = this.product.price.toString().slice(0, 50);
+            let sliced_price = this.product.price.toString().slice(0, 50);
             if (sliced_price.length < this.product.price.toString().length) {
                 sliced_price += '...';
             }
             return sliced_price
         },
     },
+    methods: {
+        onProductAdd() {
+            this.counterIncreasing = true;
+            setTimeout(() => { this.counterIncreasing = false }, 150);
+        },
+        onProductRemove() {
+            this.counterDecreasing = true;
+            setTimeout(() => { this.counterDecreasing = false }, 150);
+        },
+    }
 }
 </script>
 
@@ -49,6 +59,6 @@ export default {
         </div>
         <UPicture :alt_tag="this.product.title" />
         <UCardCaption :title="this.sliced_title" :price="this.sliced_price" />
-        <UCardButtons :product="this.product" />
+        <UCardButtons @added="onProductAdd" @removed="onProductRemove" :product="this.product" />
     </div>
 </template>
