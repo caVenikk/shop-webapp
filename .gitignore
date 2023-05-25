@@ -25,6 +25,3 @@ dist-ssr
 
 # Environ variables
 .env
-
-src/assets/images/*.png
-!src/assets/images/burrito.png
