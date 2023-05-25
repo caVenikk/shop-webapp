@@ -25,10 +25,12 @@ export default {
 
 <template>
     <div class="product-item">
-        <UPicture :alt_tag="this.product.title" class="list-img" />
+        <div class="list-img-wrapper">
+            <UPicture :product_id="this.product.id" :alt="this.product.title" class="list-img" />
+        </div>
         <UItemCaption :product="this.product" />
         <div class="price">
-            {{ this.product.price }}
+            {{ this.product.price * this.product.counter }}
         </div>
     </div>
 </template>

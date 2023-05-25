@@ -52,12 +52,12 @@ export default {
 </script>
 
 <template>
-    <div class="product-card">
+    <div v-if="this.product.active" class="product-card">
         <div class="counter"
             :class="{ active: this.product.counter > 0, increasing: this.counterIncreasing, decreasing: this.counterDecreasing }">
             {{ this.product.counter > 0 ? this.product.counter : '' }}
         </div>
-        <UPicture :alt_tag="this.product.title" />
+        <UPicture :product_id="this.product.id" :alt="this.product.title" />
         <UCardCaption :title="this.sliced_title" :price="this.sliced_price" />
         <UCardButtons @added="onProductAdd" @removed="onProductRemove" :product="this.product" />
     </div>
