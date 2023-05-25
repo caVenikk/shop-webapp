@@ -3,8 +3,8 @@ export default {
     name: 'UPicture',
     data() {
         return {
-            imagePath: `/dist/assets/${this.product_id}.png`,
-            defaultImagePath: '/dist/assets/burrito.png',
+            imagePath: `/assets/${this.product_id}.png`,
+            defaultImagePath: '/assets/burrito.png',
         };
     },
     props: {
