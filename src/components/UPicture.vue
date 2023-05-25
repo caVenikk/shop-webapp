@@ -3,8 +3,7 @@ export default {
     name: 'UPicture',
     data() {
         return {
-            imagePath: `/assets/${this.product_id}.png`,
-            defaultImagePath: '/assets/burrito.png',
+            imageSrc: '',
         };
     },
     props: {
@@ -18,19 +17,22 @@ export default {
         },
     },
     methods: {
-        handleImageError() {
-            this.imagePath = this.defaultImagePath;
-        },
-    },
-    mounted() {
-        if (+import.meta.env.VITE_DEV) {
-            imagePath = `/src/assets/images/${this.product_id}.png`
-            defaultImagePath = '/src/assets/images/burrito.png';
+        async fetchImage() {
+            try {
+                const response = await this.$axios.get(`products/img/${this.product_id}`, { responseType: 'blob' });
+                const imageUrl = URL.createObjectURL(response.data);
+                this.imageSrc = imageUrl;
+            } catch (error) {
+                console.error('Error retrieving image:', error);
+            }
         }
+    },
+    async created() {
+        this.fetchImage();
     },
 }
 </script>
 
 <template>
-    <img :src="imagePath" :alt="alt" @error="handleImageError" class="img">
+    <img :src="imageSrc" :alt="alt" class="img">
 </template>
