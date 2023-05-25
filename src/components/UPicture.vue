@@ -3,8 +3,8 @@ export default {
     name: 'UPicture',
     data() {
         return {
-            imagePath: `/src/assets/images/${this.product_id}.png`,
-            defaultImagePath: '/src/assets/images/burrito.png',
+            imagePath: `/dist/assets/${this.product_id}.png`,
+            defaultImagePath: '/dist/assets/burrito.png',
         };
     },
     props: {
@@ -21,6 +21,12 @@ export default {
         handleImageError() {
             this.imagePath = this.defaultImagePath;
         },
+    },
+    mounted() {
+        if (+import.meta.env.VITE_DEV) {
+            imagePath = `/src/assets/images/${this.product_id}.png`
+            defaultImagePath = '/src/assets/images/burrito.png';
+        }
     },
 }
 </script>
