@@ -2,10 +2,12 @@
 
 ## Table of contents
 
-- [General info](#general-info)
-- [Technologies](#technologies)
-- [Setup](#setup)
-- [Implementation example](#implementation-example)
+- [Shop web app](#shop-web-app)
+  - [Table of contents](#table-of-contents)
+  - [General info](#general-info)
+  - [Technologies](#technologies)
+  - [Setup](#setup)
+  - [Implementation example](#implementation-example)
 
 ## General info
 
@@ -24,20 +26,21 @@ Project is created with:
 
 Firstly, install all dependencies locally using npm:
 
-```
-$ cd ../shop-webapp
-$ npm install
+```bash
+cd ../shop-webapp
+npm install
 ```
 
 If you want to run dev server, use this command:
 
-```
-$ npm run dev
+```bash
+npm run dev
 ```
 
 If you want to build static, use this command:
-```
-$ npx vite build
+
+```bash
+npx vite build
 ```
 
 ## Implementation example
