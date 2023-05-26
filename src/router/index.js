@@ -17,7 +17,9 @@ const routes = [
 
 const router = createRouter({ history: createWebHistory(), routes });
 router.beforeEach((to, from, next) => {
-    console.log(`Navigating to: ${to.name}`);
+    if (+import.meta.env.VITE_DEV) {
+        console.log(`Navigating to: ${to.name}`);
+    }
     next();
 });
 export default router;

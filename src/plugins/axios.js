@@ -6,6 +6,6 @@ const axiosInstance = axios.create({
 
 export default {
     install: (app, options) => {
-        app.config.globalProperties.$axios={ ...axiosInstance };
+        app.config.globalProperties.$axios = { ...axiosInstance };
     }
 }

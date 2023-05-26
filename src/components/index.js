@@ -1,7 +1,7 @@
 import UProduct from './UProductCard.vue'
 
 const components = [
-    {name: 'UProduct', component: UProduct}
+    { name: 'UProduct', component: UProduct }
 ]
 
 export default {
