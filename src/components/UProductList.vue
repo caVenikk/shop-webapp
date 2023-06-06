@@ -1,6 +1,5 @@
 <script>
 import UProductItem from './UProductItem.vue';
-import '@/assets/stylesheets/products.css'
 
 export default {
     name: 'UProductsList',
@@ -25,3 +24,11 @@ export default {
         <UProductItem v-for="product in filteredProducts" :key="product.id" :product="product" />
     </div>
 </template>
+
+<style lang="scss" scoped>
+.products-list {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+</style>

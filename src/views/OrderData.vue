@@ -92,3 +92,31 @@ export default {
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.wrapper {
+    padding: 0 6px;
+}
+
+.order-data {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .data-caption {
+        font-weight: bolder;
+        font-size: 17px;
+        line-height: 21px;
+        user-select: none;
+    }
+
+    .link {
+        color: #31b545;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+</style>

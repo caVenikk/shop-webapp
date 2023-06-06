@@ -40,3 +40,29 @@ export default {
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.item-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding-left: 10px;
+    font-size: 15px;
+    line-height: 18px;
+
+    .title {
+        font-weight: bold;
+    }
+
+    .counter {
+        color: #f8a818;
+    }
+
+    .description {
+        color: var(--tg-theme-hint-color);
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
+</style>

@@ -1,6 +1,4 @@
 <script>
-import '@/assets/stylesheets/products.css'
-
 export default {
     data() {
         return {
@@ -68,3 +66,119 @@ export default {
         </button>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.btn-wrapper {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 20%;
+    z-index: 0;
+
+    & .btn-delete,
+    & .btn-add {
+        display: inline-block;
+        position: absolute;
+        padding: 10px;
+        border: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        top: 0;
+        left: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background .2s linear;
+        color: var(--tg-theme-button-text-color);
+    }
+
+    & .btn-delete {
+        width: 27%;
+        left: 1%;
+        z-index: 1;
+        background-color: #ff1e1e;
+
+        @media (hover: hover) {
+            &:hover {
+                cursor: pointer;
+                background: #b40000;
+            }
+        }
+
+        @media (hover: none) {
+            &:active {
+                cursor: pointer;
+                background: #b40000;
+            }
+        }
+    }
+
+    & .btn-add {
+        width: 60%;
+        z-index: 2;
+        background-color: #f8a818;
+
+        & span,
+        & i {
+            opacity: 0;
+            animation: textAppearance .2s ease-in-out forwards;
+            animation-delay: .1s;
+
+            @keyframes textAppearance {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                cursor: pointer;
+                background: #cc8500;
+            }
+        }
+
+        @media (hover: none) {
+            &:active {
+                cursor: pointer;
+                background: #cc8500;
+            }
+        }
+    }
+
+    & .changing_add {
+        animation: intoPlus .2s ease-in-out forwards;
+
+        @keyframes intoPlus {
+            0% {
+                width: 60%;
+                left: 0;
+            }
+
+            100% {
+                width: 27%;
+                left: 33.5%;
+            }
+        }
+    }
+
+    & .back {
+        animation: back .2s ease-in-out forwards;
+
+        @keyframes back {
+            0% {
+                width: 27%;
+                left: 33.5%;
+            }
+
+            100% {
+                width: 60%;
+                left: 0;
+            }
+        }
+    }
+}
+</style>

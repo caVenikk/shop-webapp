@@ -114,3 +114,12 @@ export default {
         <span v-else>Сервис временно недоступен.<br>Приносим извинения за предоставленные неудобства.</span>
     </div>
 </template>
+
+<style lang="scss">
+.main {
+    max-width: 390px;
+    text-align: center;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+</style>

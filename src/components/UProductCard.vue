@@ -62,3 +62,78 @@ export default {
         <UCardButtons @added="onProductAdd" @removed="onProductRemove" :product="this.product" />
     </div>
 </template>
+
+<style lang="scss" scoped>
+.product-card {
+    text-align: center;
+    max-height: max-content;
+    position: relative;
+
+    .counter {
+        position: absolute;
+        top: 0;
+        right: 10%;
+        z-index: 1;
+        width: 25px;
+        height: 25px;
+        background-color: #f8a818;
+        border-radius: 25px;
+        opacity: 0;
+        font-weight: bold;
+        font-size: 12px;
+        box-shadow: 0px 4px 6px 2px rgba(34, 60, 80, 0.13);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity .2s ease-in-out;
+        user-select: none;
+    }
+
+    .active {
+        opacity: 1;
+    }
+
+    .increasing {
+        animation: increasing .15s;
+
+        @keyframes increasing {
+            0% {
+                width: 25px;
+                height: 25px;
+            }
+
+            50% {
+                width: 27.5px;
+                height: 27.5px;
+            }
+
+            100% {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+
+    .decreasing {
+        animation: decreasing .15s;
+
+        @keyframes decreasing {
+            0% {
+                width: 25px;
+                height: 25px;
+            }
+
+            50% {
+                width: 22.5px;
+                height: 22.5px;
+            }
+
+            100% {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}
+</style>

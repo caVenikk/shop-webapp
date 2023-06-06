@@ -36,3 +36,10 @@ export default {
 <template>
     <img :src="imageSrc" :alt="alt" class="img">
 </template>
+
+<style lang="scss">
+.img {
+    -webkit-user-drag: none;
+    height: 40%;
+}
+</style>
