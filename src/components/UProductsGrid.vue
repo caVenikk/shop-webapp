@@ -25,7 +25,8 @@ export default {
 <style lang="scss" scoped>
 .products-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-template-columns: 50% 50%;
     grid-auto-rows: 200px;
 }
 </style>
