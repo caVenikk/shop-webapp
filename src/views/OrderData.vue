@@ -1,5 +1,5 @@
 <script>
-import UProductList from '../components/UProductList.vue';
+import UProductsList from '../components/UProductsList.vue';
 
 export default {
     name: 'OrderData',
@@ -23,7 +23,7 @@ export default {
         }
     },
     components: {
-        UProductList,
+        UProductsList,
     },
     mounted() {
         this.$tg.BackButton.show();
@@ -88,7 +88,7 @@ export default {
                 <span class="data-caption">ВАШ ЗАКАЗ</span>
                 <span @click="onBackButtonClicked" class="link">Редактировать</span>
             </div>
-            <UProductList />
+            <UProductsList />
         </div>
     </div>
 </template>
